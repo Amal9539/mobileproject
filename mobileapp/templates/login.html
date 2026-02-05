@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 50%, rgba(240, 147, 251, 0.9) 100%);
+                        
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -250px;
+            left: -250px;
+            animation: pulse 6s ease-in-out infinite 3s;
+        }
+/* 
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        } */
+
+        .login {
+            
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            animation: float 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            width: 450px;
+            max-width: 90%;
+        }
+
+        /* .login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #667eea, #764ba2, #f093fb, transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+            border-radius: 30px 30px 0 0;
+        } */
+
+        .login h1 {
+            font-size: 52px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 14px;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .input-wrapper:focus-within::before {
+            opacity: 1;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            font-size: 16px;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 2px solid #e5e7eb;
+            background: #f9fafb;
+            color: #1f2937;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            background: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            background-position: right center;
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .forgot-password a {
+            color: #764ba2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #667eea;
+        }
+
+        /* .icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        } */
+
+        /* .icon::before {
+            content: '🔐';
+            font-size: 36px;
+        } */
+    </style>
+</head>
+<body>
+    <div>
+       <div class="login">
+    <h1>Login</h1>
+    <div class="subtitle">Welcome Back!</div>
+     {% load static %}
+    <img src="{% static 'sj.jpg' %}" alt="" height="150px" width="200px" 
+         style="border-radius: 20px; margin-left: 50px;margin-bottom: 10px;">
+
+    <!-- ✅ Add the form -->
+    <form method="post" action="/mobileproject/login_post/">
+        {% csrf_token %}
+       
+        <div class="input-group">
+            <label for="username">USERNAME</label>
+            <div class="input-wrapper">
+                <input type="text" id="username" name="textfield" placeholder="Enter Your User Name">
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label for="password">PASSWORD</label>
+            <div class="input-wrapper">
+                <input type="password" id="password" name="textfield2" placeholder="Enter Your Password">
+            </div>
+        </div>
+        
+        <button type="submit" class="login-btn">Sign In </button>
+    </form>
+</div>
+
+    </div>
+</body>
+</html>
