@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
-
-
-
+from mobileapp.views import login_get
 
 urlpatterns = [
+    path('', login_get, name='login'),  # Root URL to render login.html
     path('admin/', admin.site.urls),
     path('mobileproject/', include('mobileapp.urls')),
-    
 ]
