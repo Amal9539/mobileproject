@@ -1,577 +1,41 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device & Customer Details</title>
-    <style>
-        /* Keep your same styles */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        body > div {
-            display: flex; flex-direction: column; gap: 20px; max-width: 450px; width: 100%;
-        }
-        .device, .customer {
-            background: white; border-radius: 16px; padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
-        }
-        h1 { color: #1e293b; font-size: 20px; margin-bottom: 25px; }
-        input[type="text"], input[type="number"], input[type="password"] {
-            width: 100%; padding: 12px 16px; margin: 0 0 15px 0;
-            border: 2px solid #e2e8f0; border-radius: 10px;
-            background: #f8fafc; font-size: 14px;
-        }
-        button {
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            color: white; font-size: 15px; font-weight: 600;
-            padding: 14px 36px; border: none; border-radius: 10px;
-            cursor: pointer; width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <form method="post" action="/mobileproject/user_post/">
-            {% csrf_token %}
-            <div class="device">
-                <h1>DEVICE DETAILS</h1>
-                <input type="text" name="phonemodel" placeholder="Phone Model" required><br>
-                <input type="number" name="imeino" placeholder="IMEI Number" required><br>
-                <input type="password" name="password" placeholder="Password" required><br>
-                <input type="text" name="complaint" placeholder="Complaint" required><br>
-            </div>
-            <div class="customer">
-                <h1>CUSTOMER DETAILS</h1>
-                <input type="text" name="customer_name" placeholder="Customer Name" required><br>
-                <input type="number" name="phone_number" placeholder="Phone Number" required><br>
-            </div>
-            <div class="save-button">
-                <button type="submit">Save Details</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html> -->
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device & Customer Details</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-            overflow-y: auto;
-        }
-
-        /* Decorative background circles */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 183, 77, 0.2), transparent);
-            border-radius: 50%;
-            top: -150px;
-            right: -100px;
-            animation: float1 15s ease-in-out infinite;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(255, 138, 101, 0.2), transparent);
-            border-radius: 50%;
-            bottom: -100px;
-            left: -80px;
-            animation: float2 12s ease-in-out infinite;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, 30px); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
-
-        body > div {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            max-width: 480px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 25px 30px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08),
-                        0 10px 20px rgba(0, 0, 0, 0.04);
-            margin: 15px auto;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-header .icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 24px;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .form-header h1 {
-            color: #2d3748;
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-        }
-
-        .form-header p {
-            color: #718096;
-            font-size: 13px;
-        }
-
-        .device, .customer {
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            color: #ff6b6b;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #fff5f5;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, #ff9a56 0%, #ff6b6b 100%);
-            border-radius: 2px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 12px;
-        }
-
-        .input-group label {
-            position: absolute;
-            top: -8px;
-            left: 14px;
-            background: white;
-            padding: 0 6px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #718096;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .input-group:focus-within label {
-            opacity: 1;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 14px;
-            margin: 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            background: #fafafa;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            color: #2d3748;
-        }
-
-        input::placeholder {
-            color: #a0aec0;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #ff9a56;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255, 154, 86, 0.1);
-            transform: translateY(-1px);
-        }
-
-        input:hover:not(:focus) {
-            border-color: #cbd5e1;
-            background: white;
-        }
-
-        .save-button {
-            margin-top: 8px;
-        }
-
-        button {
-            background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%);
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-            padding: 13px 28px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        button:hover::before {
-            transform: translateX(100%);
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
-        }
-
-        button:active {
-            transform: translateY(-1px);
-        }
-
-        /* Decorative dots */
-        .dots {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #ff9a56;
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        .dots:nth-child(1) {
-            top: 50px;
-            right: 50px;
-            animation: pulse-dot 3s ease-in-out infinite;
-        }
-
-        .dots:nth-child(2) {
-            bottom: 80px;
-            left: 40px;
-            width: 8px;
-            height: 8px;
-            background: #ff6b6b;
-            animation: pulse-dot 3s ease-in-out infinite 1.5s;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.5); opacity: 0.6; }
-        }
-
-        /* Responsive design */
-        @media (max-width: 520px) {
-            body {
-                padding: 20px 15px;
-            }
-
-            body > div {
-                padding: 40px 30px;
-            }
-
-            .form-header h1 {
-                font-size: 26px;
-            }
-
-            .form-header .icon {
-                width: 60px;
-                height: 60px;
-                font-size: 28px;
-            }
-
-            input[type="text"],
-            input[type="number"],
-            input[type="password"] {
-                padding: 14px 16px;
-                font-size: 14px;
-            }
-
-            button {
-                padding: 16px 28px;
-                font-size: 16px;
-            }
-        }
-
-        /* Remove spinner from number inputs */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <span class="dots"></span>
-        <span class="dots"></span>
-        
-        <div class="form-header">
-            <div class="icon">📱</div>
-            <h1>Repair Service</h1>
-            <p>Fill in the details to start repair process</p>
-        </div>
-
-        <form method="post" action="/mobileproject/user_post/">
-            {% csrf_token %}
-            <div class="device">
-                <div class="section-title">Device Information</div>
-                <div class="input-group">
-                    <input type="text" name="phonemodel" placeholder="Phone Model" required>
-                </div>
-                <div class="input-group">
-                    <input type="number" name="imeino" placeholder="IMEI Number" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" name="password" placeholder="Password" required>
-                </div>
-                <div class="input-group">
-                    <input type="text" name="complaint" placeholder="Complaint" required>
-                </div>
-            </div>
-            <div class="customer">
-                <div class="section-title">Customer Information</div>
-                <div class="input-group">
-                    <input type="text" name="customer_name" placeholder="Customer Name" required>
-                </div>
-                <div class="input-group">
-                    <input type="number" name="phone_number" placeholder="Phone Number" required>
-                </div>
-            </div>
-            <div class="save-button">
-                <button type="submit">Save Details</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device & Customer Details - SJ Mobile</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #00F0FF;
-            --secondary: #FF006E;
-            --dark: #0A0E27;
-            --darker: #050714;
-            --light: #E8EBF7;
             --accent: #7B2FFF;
+            --dark-text: #1a202c;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Urbanist', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
             min-height: 100vh;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* Animated background with floating elements */
-        .bg-animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .floating-shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .floating-shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.15), transparent);
-        }
-
-        .floating-shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.15), transparent);
-        }
-
-        .floating-shape:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 4s;
-            background: radial-gradient(circle, rgba(123, 47, 255, 0.15), transparent);
-        }
-
-        .floating-shape:nth-child(4) {
-            width: 180px;
-            height: 180px;
-            top: 30%;
-            right: 30%;
-            animation-delay: 6s;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.1), transparent);
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translate(0, 0) scale(1);
-                opacity: 0.5;
-            }
-            25% { 
-                transform: translate(30px, -30px) scale(1.1);
-                opacity: 0.7;
-            }
-            50% { 
-                transform: translate(-20px, 40px) scale(0.9);
-                opacity: 0.6;
-            }
-            75% { 
-                transform: translate(40px, 20px) scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        /* Particles effect */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: particle-float 15s infinite;
-        }
-
-        @keyframes particle-float {
-            0% { 
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% { 
-                transform: translateY(-100vh) translateX(50px);
-                opacity: 0;
-            }
-        }
-
-        /* Header - Light color scheme */
+        /* Updated Header - Light Navigation Bar */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 5%;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
             border-bottom: 2px solid rgba(0, 240, 255, 0.15);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             animation: slideDown 0.6s ease-out;
         }
 
@@ -582,7 +46,7 @@
 
         .logo {
             font-family: 'Exo 2', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
@@ -593,15 +57,15 @@
 
         nav {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         nav a {
-            color: #2d3748;
+            color: var(--dark-text);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             position: relative;
             transition: color 0.3s;
         }
@@ -632,315 +96,6 @@
             color: var(--primary);
         }
 
-        /* Main Content Area */
-        .main-content {
-            padding-top: 120px;
-            padding-bottom: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-container {
-            max-width: 520px;
-            width: 100%;
-            position: relative;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 30px;
-            padding: 40px 40px;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2),
-                        0 15px 40px rgba(0, 0, 0, 0.15),
-                        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            margin: 0 20px;
-            backdrop-filter: blur(10px);
-            animation: scaleIn 0.6s ease-out;
-            overflow: hidden;
-        }
-
-        @keyframes scaleIn {
-            from { 
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to { 
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Decorative corner elements */
-        .form-container::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.2), transparent);
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        .form-container::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.2), transparent);
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: glow 3s ease-in-out infinite 1.5s;
-        }
-
-        @keyframes glow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 35px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-header .icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 18px;
-            font-size: 32px;
-            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.4),
-                        0 5px 15px rgba(123, 47, 255, 0.3);
-            animation: iconBounce 2s ease-in-out infinite;
-            position: relative;
-        }
-
-        .form-header .icon::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 22px;
-            opacity: 0.3;
-            filter: blur(10px);
-            z-index: -1;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(-5deg); }
-            75% { transform: translateY(-10px) rotate(5deg); }
-        }
-
-        .form-header h1 {
-            color: #1a202c;
-            font-family: 'Exo 2', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #1a202c, #2d3748);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .form-header p {
-            color: #718096;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .device, .customer {
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 18px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 18px;
-        }
-
-        .input-group label {
-            position: absolute;
-            top: -10px;
-            left: 16px;
-            background: white;
-            padding: 0 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #718096;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .input-group:focus-within label {
-            opacity: 1;
-            top: -10px;
-            color: var(--primary);
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="password"] {
-            width: 100%;
-            padding: 16px 18px;
-            margin: 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            background: #fafafa;
-            font-size: 15px;
-            font-family: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #2d3748;
-            font-weight: 500;
-        }
-
-        input::placeholder {
-            color: #a0aec0;
-            font-weight: 400;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.1),
-                        0 8px 20px rgba(0, 240, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        input:hover:not(:focus) {
-            border-color: #cbd5e1;
-            background: white;
-            transform: translateY(-1px);
-        }
-
-        .save-button {
-            margin-top: 12px;
-            position: relative;
-            z-index: 1;
-        }
-
-        button[type="submit"] {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            font-size: 16px;
-            font-weight: 800;
-            padding: 18px 32px;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.4),
-                        0 8px 20px rgba(123, 47, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button[type="submit"]::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s ease;
-        }
-
-        button[type="submit"]:hover::before {
-            left: 100%;
-        }
-
-        button[type="submit"]:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.5),
-                        0 15px 30px rgba(123, 47, 255, 0.4);
-        }
-
-        button[type="submit"]:active {
-            transform: translateY(-2px) scale(0.98);
-        }
-
-        /* Success badge animation */
-        .success-indicator {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
-            animation: successPop 0.5s ease-out;
-        }
-
-        @keyframes successPop {
-            0% { transform: scale(0) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-
-        /* Remove spinner from number inputs */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
         /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
@@ -953,16 +108,135 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: #2d3748;
+            background: var(--dark-text);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
 
-        /* Responsive design */
+        .main-content {
+            padding-top: 90px;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 40px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            width: 100%;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            margin: 20px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 12px;
+        }
+
+        .form-header h1 {
+            font-family: 'Exo 2';
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 6px;
+        }
+
+        /* Grid Layout for Form Fields */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: -10px;
+            left: 14px;
+            background: white;
+            padding: 0 5px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #718096;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,240,255,0.15);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             nav {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 left: -100%;
                 flex-direction: column;
                 background: rgba(255, 255, 255, 0.98);
@@ -983,155 +257,130 @@
                 display: flex;
             }
 
-            .main-content {
-                padding-top: 100px;
-            }
-
-            .form-container {
-                padding: 35px 28px;
-                margin: 0 15px;
-            }
-
-            .form-header .icon {
-                width: 60px;
-                height: 60px;
-                font-size: 28px;
-            }
-
-            .form-header h1 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 520px) {
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
 
             header {
-                padding: 1.2rem 4%;
+                padding: 1rem 4%;
+            }
+
+            .main-content {
+                padding-top: 80px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group.full-width {
+                grid-column: 1;
             }
 
             .form-container {
-                border-radius: 25px;
-            }
-
-            input[type="text"],
-            input[type="number"],
-            input[type="password"] {
-                padding: 14px 16px;
+                padding: 25px;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="bg-animation">
-        <div class="floating-shape"></div>
-        <div class="floating-shape"></div>
-        <div class="floating-shape"></div>
-        <div class="floating-shape"></div>
+
+<header>
+    <div class="logo">SJMobiles</div>
+    <nav id="nav">
+        <a href="/mobileproject/home_get/">Home</a>
+        <a href="/mobileproject/user_get/" class="active">Customer</a>
+        <a href="/mobileproject/user_view/">Repair</a>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+</header>
 
-    <header>
-        <div class="logo">SJMobiles</div>
-        <nav id="nav">
-            <a href="/home_get/">Home</a>
-            <a href="/mobileproject/user_get/" class="active">Customer</a>
-            <a href="/mobileproject/user_view/">Repair</a>
-        </nav>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+<div class="main-content">
+    <div class="form-container">
+
+        <div class="form-header">
+            <div class="icon">📱</div>
+            <h1>Repair Service</h1>
+            <p>Fill in the details to start repair process</p>
         </div>
-    </header>
 
-    <div class="main-content">
-        <div class="form-container">
-            <div class="success-indicator">✓</div>
-            
-            <div class="form-header">
-                <div class="icon">📱</div>
-                <h1>Repair Service</h1>
-                <p>Fill in the details to start repair process</p>
-            </div>
+        <form method="post" action="/mobileproject/user_post/">
+            {% csrf_token %}
 
-            <form method="post" action="/mobileproject/user_post/" id="repairForm">
-                {% csrf_token %}
-                <div class="device">
-                    <div class="section-title">Device Information</div>
+            <div class="device">
+                <div class="section-title">Device Information</div>
+
+                <div class="form-grid">
                     <div class="input-group">
                         <label>Phone Model</label>
-                        <input type="text" name="phonemodel" placeholder="Phone Model" required>
+                        <input type="text" name="phonemodel" required>
                     </div>
+
                     <div class="input-group">
                         <label>IMEI Number</label>
-                        <input type="number" name="imeino" placeholder="IMEI Number" required>
+                        <input type="number" name="imeino" required>
                     </div>
+
                     <div class="input-group">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="password" required>
                     </div>
+
                     <div class="input-group">
+                        <label>Actual Price (₹)</label>
+                        <input type="number" name="actual_price" required min="0">
+                    </div>
+
+                    <div class="input-group full-width">
                         <label>Complaint</label>
-                        <input type="text" name="complaint" placeholder="Complaint" required>
+                        <input type="text" name="complaint" required>
                     </div>
                 </div>
-                <div class="customer">
-                    <div class="section-title">Customer Information</div>
+            </div>
+
+            <div class="customer">
+                <div class="section-title">Customer Information</div>
+
+                <div class="form-grid">
                     <div class="input-group">
                         <label>Customer Name</label>
-                        <input type="text" name="customer_name" placeholder="Customer Name" required>
+                        <input type="text" name="customer_name" required>
                     </div>
+
                     <div class="input-group">
                         <label>Phone Number</label>
-                        <input type="number" name="phone_number" placeholder="Phone Number" required>
+                        <input type="number" name="phone_number" required>
                     </div>
                 </div>
-                <div class="save-button">
-                    <button type="submit">Save Details</button>
-                </div>
-            </form>
-        </div>
+            </div>
+
+            <button type="submit">Save Details</button>
+        </form>
+
     </div>
+</div>
 
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('nav');
-            nav.classList.toggle('active');
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const nav = document.getElementById('nav');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+            nav.classList.remove('active');
         }
+    });
+</script>
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('nav');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
-                nav.classList.remove('active');
-            }
-        });
-
-        // Create floating particles
-        function createParticles() {
-            const bgAnimation = document.querySelector('.bg-animation');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                bgAnimation.appendChild(particle);
-            }
-        }
-
-        createParticles();
-
-        // Add input animation on focus
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.querySelector('label')?.classList.add('active');
-            });
-        });
-    </script>
 </body>
 </html>
