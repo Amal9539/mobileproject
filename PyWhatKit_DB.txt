@@ -408,3 +408,18 @@ Time: 21:18
 Phone Number: +919562247591
 Message: Hello jishnu,Your device (iphone) repair is completed.Bill Amount: ₹2000Thank you!- +919562612834 (Service Center)
 --------------------
+Date: 6/2/2026
+Time: 0:12
+Phone Number: +919562247591
+Message: Hello jishnu,Your iphone could not be repaired.Sorry for inconvenience.
+--------------------
+Date: 6/2/2026
+Time: 0:20
+Phone Number: +919562247591
+Message: Hello akhi,Your iphone repair is completed.Bill Amount: ₹12000Thank you!
+--------------------
+Date: 6/2/2026
+Time: 1:6
+Phone Number: +919562247591
+Message: Hello akhi,Your iphone could not be repaired.Sorry for inconvenience.
+--------------------
