@@ -26,16 +26,6 @@ A full-stack web application built with Django and MySQL to manage mobile repair
 
 ---
 
-## 📸 Screenshots
-
-### Repair Entry Form
-![Repair Form](screenshots/repair_form.png)
-
-### Mobile Repair Dashboard
-![Dashboard](screenshots/dashboard.png)
-
----
-
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the Repository
