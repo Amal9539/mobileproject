@@ -61,7 +61,7 @@ DATABASES = {
         'USER': 'your_mysql_user',
         'PASSWORD': 'your_mysql_password',
         'HOST': 'localhost',
-        'PORT': 'xxxx',
+        'PORT': 'xxxxx',
     }
 }
 ```
